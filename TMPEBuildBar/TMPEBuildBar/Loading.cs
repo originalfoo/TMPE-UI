@@ -17,12 +17,16 @@ namespace TMPEBuildBar
             {
                 _loadMode = mode;
 
-                if (_loadMode != LoadMode.LoadGame && _loadMode != LoadMode.NewGame && _loadMode != LoadMode.NewGameFromScenario)
+                if (!ApplicableLoadMode())
                 {
                     return;
                 }
 
-                // somehow create a build bar here
+                // add build bar
+
+                // add button to toggle build bar
+
+                Debug.Log("TMPEBB OnLevelLoaded");
 
             }
             catch (Exception e)
@@ -35,10 +39,12 @@ namespace TMPEBuildBar
         {
             try
             {
-                if (_loadMode != LoadMode.LoadGame && _loadMode != LoadMode.NewGame && _loadMode != LoadMode.NewGameFromScenario)
+                if (!ApplicableLoadMode())
                 {
                     return;
                 }
+
+                Debug.Log("TMPEBB UnLevelUnloading");
 
                 if (_gameObject == null)
                 {
@@ -51,6 +57,11 @@ namespace TMPEBuildBar
             {
                 Debug.Log("[TMPEBuildBar] Loading:OnLevelUnloading -> Exception: " + e.Message);
             }
+        }
+
+        public bool ApplicableLoadMode()
+        {
+            return (_loadMode != LoadMode.LoadGame || _loadMode != LoadMode.NewGame || _loadMode != LoadMode.NewGameFromScenario);
         }
     }
 }
