@@ -22,9 +22,9 @@ namespace TMPEBuildBar
                     return;
                 }
 
-                // add build bar
+                // tood: add build bar
 
-                // add button to toggle build bar
+                // UI.CreateButton();
 
                 Debug.Log("TMPEBB OnLevelLoaded");
 
@@ -59,6 +59,7 @@ namespace TMPEBuildBar
             }
         }
 
+        // Defines which load modes are applicable to the mod
         public bool ApplicableLoadMode()
         {
             return (_loadMode != LoadMode.LoadGame || _loadMode != LoadMode.NewGame || _loadMode != LoadMode.NewGameFromScenario);
