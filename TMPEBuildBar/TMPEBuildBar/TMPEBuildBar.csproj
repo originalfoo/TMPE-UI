@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UIChameleonButton.cs" />
     <Compile Include="Loading.cs" />
     <Compile Include="Mod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

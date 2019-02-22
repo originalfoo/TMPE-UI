@@ -2,32 +2,44 @@
 using ICities;
 using System;
 using UnityEngine;
+using TMPEBuildBar.UI;
 
 namespace TMPEBuildBar
 {
 
     public class Loading : LoadingExtensionBase
     {
-        private LoadMode _loadMode;
-        private GameObject _gameObject;
+        protected LoadMode _loadMode;
+
+        public UIChameleonButton btn;
 
         public override void OnLevelLoaded(LoadMode mode)
         {
+            _loadMode = mode;
+            Debug.Log("TMPEBB OnLevelLoaded - check load mode");
+
+            if (!ApplicableLoadMode())
+            {
+                return;
+            }
+
+            Debug.Log("TMPEBB OnLevelLoaded - load mode good");
+
             try
             {
-                _loadMode = mode;
+                Debug.Log("TMPEBB OnLevelLoaded - about to add button");
+                // todo: add build bar
 
-                if (!ApplicableLoadMode())
+                UIComponent parent = UIView.Find("TSBar");
+
+                if (parent == null)
                 {
-                    return;
+                    Debug.Log("TMPEBB OnLevelLoaded - could not find parent 'TSBar'");
                 }
 
-                // tood: add build bar
-
-                // UI.CreateButton();
-
-                Debug.Log("TMPEBB OnLevelLoaded");
-
+                btn = parent.AddUIComponent<UIChameleonButton>();
+                btn.name = "foofoo";
+                Debug.Log("TMPEBB OnLevelLoaded - button added");
             }
             catch (Exception e)
             {
@@ -46,12 +58,6 @@ namespace TMPEBuildBar
 
                 Debug.Log("TMPEBB UnLevelUnloading");
 
-                if (_gameObject == null)
-                {
-                    return;
-                }
-
-                UnityEngine.Object.Destroy(_gameObject);
             }
             catch (Exception e)
             {
@@ -60,9 +66,9 @@ namespace TMPEBuildBar
         }
 
         // Defines which load modes are applicable to the mod
-        public bool ApplicableLoadMode()
+        protected bool ApplicableLoadMode()
         {
-            return (_loadMode != LoadMode.LoadGame || _loadMode != LoadMode.NewGame || _loadMode != LoadMode.NewGameFromScenario);
+            return ( (_loadMode == LoadMode.LoadGame) || (_loadMode == LoadMode.NewGame) || (_loadMode == LoadMode.NewGameFromScenario) );
         }
     }
 }

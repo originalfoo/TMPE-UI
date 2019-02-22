@@ -3,7 +3,20 @@ using UnityEngine;
 
 namespace TMPEBuildBar
 {
-    public class UI
+    /* Useful bits of the UI
+
+       * UISlicedSprite ThumbnailBar = the bar where advisor button goes
+       * UISlicedSprite TSBar = Tool strip bar (Icon WxH: 43x49)
+           * UITabStrip MainToolStrip = where roads..policies buttons live
+               * UIButton * = a button
+               * UISprite Separator = a gap in the buttons
+           * UITabContainer TSContainer = where tabbed tool strips live
+               * UIPanel UIPanel = tab bar
+               * UIPanel UIPanel = tool panel, eg. roads menu (Icon: WxH: 109x100)
+           * UIPanel OptionsBar = where option buttons go (eg. curved road button when roads menu is open)
+       * UIPanel InfoPanel = RICO graphs, population, etc. (Icon WxH: 36x36)
+    */
+    public class UIX
     {
         public static UIButton CreateButton(UIComponent parent, string name)
         {
